@@ -1,0 +1,38 @@
+.Auth {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+} 
+
+.Auth__window {
+  border: 2px solid #dadada;
+  width: 50%;
+  margin: 0 auto;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.Auth__title {
+  font-size: 24px;
+  font-weight: 600;
+  border-bottom: 2px solid #dadada;
+  padding-bottom: 10px;
+}
+
+.form {
+  margin: 0 auto;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
