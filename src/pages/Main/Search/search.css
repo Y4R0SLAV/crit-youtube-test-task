@@ -1,0 +1,38 @@
+/* SEARCH */
+
+.form {
+  width: 60%;
+  margin: 2px auto;
+  display: grid;
+  grid-template-columns: 1fr 0.1fr;
+}
+
+.form__field {
+  padding: 8px;
+}
+
+/* SAVE SEARCH */
+
+.SaveSearch {
+  width: 60%;
+  margin: 2px auto;
+  text-align: left;
+}
+
+.SaveSearch__button {
+  padding: 5px 0;
+  width: 25%;
+  text-align: center; 
+  border: 1px solid #eaeaea;
+  font-size: 14px;
+}
+
+.SaveSearch__button:hover {
+  background: #eaeaea;
+  text-decoration: underline;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+
+/* RESULTS */
