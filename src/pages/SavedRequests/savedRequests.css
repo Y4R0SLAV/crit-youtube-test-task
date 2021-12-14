@@ -1,0 +1,18 @@
+.SavedRequests {
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+} 
+
+.SavedRequests__wrapper {
+  margin: 0 auto;
+  border: 2px red solid;
+  padding-top: 100px;
+  max-width: 1140px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+}
+

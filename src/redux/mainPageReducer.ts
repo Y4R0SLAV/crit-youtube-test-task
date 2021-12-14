@@ -1,7 +1,6 @@
-import { Dispatch } from "react"
 import { ThunkAction } from "redux-thunk"
 import { videoApi } from './../api/api'
-import store, { AppStateType } from "./store"
+import { AppStateType } from "./store"
 
 const SET_QUERY_STRING = "main/SET_QUERY_STRING"
 const SET_VIDEO = "main/SET_VIDEO"
@@ -43,7 +42,6 @@ const mainReducer = (state = initialState, action: ActionsType): InitialStateTyp
       return {...state, videos: [action.params, ...state.videos]}
 
     case DELETE_VIDEOS:
-      alert(123)
       return {...state, videos: []}
 
     default:
@@ -52,7 +50,7 @@ const mainReducer = (state = initialState, action: ActionsType): InitialStateTyp
 }
 
 // actions: 
-type ActionsType = setQueryStringType | setVideoType | deleteVideos
+type ActionsType = setQueryStringType | setVideoType | deleteVideosType
 
 type setQueryStringType = {type: typeof SET_QUERY_STRING, query: string}
 export const setQueryString = (query: string): setQueryStringType => ({ type: SET_QUERY_STRING, query })
@@ -60,12 +58,11 @@ export const setQueryString = (query: string): setQueryStringType => ({ type: SE
 type setVideoType = {type: typeof SET_VIDEO, params: VideoType}
 export const setVideo = (params: VideoType): setVideoType => ({ type: SET_VIDEO, params })
 
-type deleteVideos = {type: typeof DELETE_VIDEOS}
-export const deleteVideos = (): deleteVideos => ({ type: DELETE_VIDEOS })
+type deleteVideosType = {type: typeof DELETE_VIDEOS}
+export const deleteVideos = (): deleteVideosType => ({ type: DELETE_VIDEOS })
 
 
 // thunks: 
-type DispatchType = Dispatch<ActionsType>
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 
 
@@ -87,7 +84,7 @@ const presetVideo = ( title: string, thumbnail: string, url: string, publishedTi
 
 const getVideoInfo = (id: string): ThunkType => {
   return async (dispatch: any) => {
-    let data = await videoApi.getVideoInfo(id).then(data => data.items[0]).then(data => {  
+    await videoApi.getVideoInfo(id).then(data => data.items[0]).then(data => {  
       dispatch(presetVideo( data.snippet.title,
                             data.snippet.thumbnails.medium.url,
                             data.id, 

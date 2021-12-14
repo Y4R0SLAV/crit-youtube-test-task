@@ -106,6 +106,7 @@ const getVideoItem = (video: VideoType) => {
 } 
 
 const SearchResult: FC<{videos: Array<VideoType>}> = ({videos}) => {
+
   return (
     <div className="SearchResult">
       {videos.map(video => getVideoItem(video))}

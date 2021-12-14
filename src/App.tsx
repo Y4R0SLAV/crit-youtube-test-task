@@ -1,19 +1,21 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import './App.css'
-import Auth from './pages/Auth/Auth'
-import MainContainer from './pages/Main/MainContainer'
 import store from "./redux/store"
+import AppRouter from './components/AppRouter'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
-    <Provider store={store}>
-      <div className="App">
-        {/* <Auth /> */}
-        <MainContainer /> 
-      </div>
-    </Provider>
-  );
+    <BrowserRouter>
+      <Provider store={store}>
+        <div className="App">
+          {/* КОмпонент для выхода из аккаунта */}
+          <AppRouter />
+        </div>
+      </Provider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

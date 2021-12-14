@@ -10,10 +10,10 @@ const Search: FC<PropsType> = ({queryString, setQueryString, getVideosId}) => {
   }
 
   return (
-    <form action="" className="form">
-      <input type="text" value={queryString} className="form__field" onChange={(e) => handleQuery(e)}/>
-      <button onClick={(e) => {e.preventDefault(); getVideosId(queryString)}} > ПОИСК </button>
-    </form>
+    <div className="search__wrapper">
+      <input type="text" value={queryString} className="form__field form__input" onChange={(e) => handleQuery(e)}/>
+      <button className="form__field" onClick={(e) => {e.preventDefault(); getVideosId(queryString)}} > ПОИСК </button>
+    </div>
   );
 }
 
