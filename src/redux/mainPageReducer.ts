@@ -1,13 +1,14 @@
 import { Dispatch } from "react"
 import { ThunkAction } from "redux-thunk"
 import { videoApi } from './../api/api'
-import { AppStateType } from "./store"
+import store, { AppStateType } from "./store"
 
-const SET_QUERY_STRING = "app/SET_QUERY_STRING"
-const SET_VIDEO = "app/SET_VIDEO"
+const SET_QUERY_STRING = "main/SET_QUERY_STRING"
+const SET_VIDEO = "main/SET_VIDEO"
+const DELETE_VIDEOS = "main/DELETE_VIDEOS"
 
 
-type VideoType = {
+export type VideoType = {
   title: string
   thumbnail: string
   url: string 
@@ -38,8 +39,12 @@ const mainReducer = (state = initialState, action: ActionsType): InitialStateTyp
     case SET_QUERY_STRING: 
       return {...state, queryString: action.query}
 
-    case SET_VIDEO: 
+    case SET_VIDEO:
       return {...state, videos: [action.params, ...state.videos]}
+
+    case DELETE_VIDEOS:
+      alert(123)
+      return {...state, videos: []}
 
     default:
       return state
@@ -47,14 +52,17 @@ const mainReducer = (state = initialState, action: ActionsType): InitialStateTyp
 }
 
 // actions: 
-type ActionsType = setQueryStringType | setVideoType
+type ActionsType = setQueryStringType | setVideoType | deleteVideos
 
 type setQueryStringType = {type: typeof SET_QUERY_STRING, query: string}
 export const setQueryString = (query: string): setQueryStringType => ({ type: SET_QUERY_STRING, query })
 
-
 type setVideoType = {type: typeof SET_VIDEO, params: VideoType}
 export const setVideo = (params: VideoType): setVideoType => ({ type: SET_VIDEO, params })
+
+type deleteVideos = {type: typeof DELETE_VIDEOS}
+export const deleteVideos = (): deleteVideos => ({ type: DELETE_VIDEOS })
+
 
 // thunks: 
 type DispatchType = Dispatch<ActionsType>
@@ -94,15 +102,17 @@ const getVideoInfo = (id: string): ThunkType => {
   }
 }
 
-export const getVideosId = (): ThunkType => {
+export const getVideosId = (queryString: string): ThunkType => {
   return async (dispatch: any ) => {
-    let data = await videoApi.getVideos(initialState.queryString).then(data => data.items)
-
-    for (let i = 0; i < data.length; i++) {
-      dispatch(getVideoInfo(data[i].id.videoId))
+    dispatch(deleteVideos())
+    let data = await videoApi.getVideos(queryString).then(data => data.items)
+    
+    
+      for (let i = 0; i < data.length; i++) {
+        dispatch(getVideoInfo(data[i].id.videoId))
+      }
       // по очереди передаются все айди полученные по запросу пользователя
     }
   }
-}
 
 export default mainReducer

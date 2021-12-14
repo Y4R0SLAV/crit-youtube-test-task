@@ -13,7 +13,7 @@ const instance = axios.create({
 
 export const videoApi = {
   getVideos (queryString: string): Promise<any> {
-    return instance.get<any>(`search?type=video&q=${queryString}&key=AIzaSyCexCKgaWB6qmdo06Yq7FAj0PW8UQrcIeo`)
+    return instance.get<any>(`search?type=video&q=${queryString}&chart=mostPopular&key=AIzaSyCexCKgaWB6qmdo06Yq7FAj0PW8UQrcIeo`)
     .then(response => response.data)
   },
   getVideoInfo (id: string): Promise<any> {
