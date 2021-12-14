@@ -1,29 +1,19 @@
-import React from 'react'
+import React, {FC} from 'react'
 import "./search.css"
-import { Formik, Form, Field } from 'formik'
 
-const Search = () => {
+type PropsType = {queryString: string, setQueryString: (x: string) => void, getVideosId: () => void }
+
+
+const Search: FC<PropsType> = ({queryString, setQueryString, getVideosId}) => {
+  const handleQuery = (e: any) => {
+    setQueryString(e.currentTarget.value)
+  }
+
   return (
-    <Formik
-      initialValues={{ request: ''}}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Form className="form">
-          <Field type="text" name="request" className="form__field form_request" placeholder="Введите запрос"/>
-          <button type="submit" disabled={isSubmitting} className="form__field form__button"> 
-          {/* ПОТОМ ДОБАВИТЬ ИКОНКУ ВМЕСТО ТЕКСТА */} 
-          {/* axios бла бла https://youtube.googleapis.com/youtube/v3/search?q=${request}&key=${API_KEY} */}
-            Поиск
-          </button>
-        </Form>
-      )}
-    </Formik>
+    <form action="" className="form">
+      <input type="text" value={queryString} className="form__field" onChange={(e) => handleQuery(e)}/>
+      <button onClick={(e) => {e.preventDefault(); getVideosId()}} > ПОИСК </button>
+    </form>
   );
 }
 

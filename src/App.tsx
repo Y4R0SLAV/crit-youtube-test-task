@@ -1,14 +1,18 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import './App.css'
 import Auth from './pages/Auth/Auth'
-import Main from './pages/Main/Main'
+import MainContainer from './pages/Main/MainContainer'
+import store from "./redux/store"
 
 function App() {
   return (
-    <div className="App">
-      {/* <Auth /> */}
-      <Main /> 
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        {/* <Auth /> */}
+        <MainContainer /> 
+      </div>
+    </Provider>
   );
 }
 
