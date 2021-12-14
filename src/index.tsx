@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const API_KEY="AIzaSyCexCKgaWB6qmdo06Yq7FAj0PW8UQrcIeo" // хз куда деть потом уберу
 
 ReactDOM.render(
   <React.StrictMode>
