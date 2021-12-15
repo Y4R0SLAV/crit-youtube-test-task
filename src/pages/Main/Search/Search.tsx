@@ -22,7 +22,6 @@ const Search: FC<PropsType> = ({queryString, setQueryString, getVideosId}) => {
 
   const handleQuery = (e: any) => {
     setQueryString(e.currentTarget.value)
-    alert("set " + e.currentTarget.value)
   }
 
   const handleSearch = (e: any) => {

@@ -3,27 +3,35 @@ import styles from './modal.module.css'
 import "./modal.css"
 import { Formik, Form, Field } from 'formik'
 
-type Props = {active: boolean, setActive: (x: boolean) => void, query: string, editMode: boolean, onSubmit: (x: ModalValuesType) => void}
+type Props = {active: boolean,
+              setActive: (x: boolean) => void,
+              query: string, editMode: boolean,
+              onSubmit: (x: ModalValuesType) => void,
+              request: ModalValuesType | {}
+            }
 
-export type ModalValuesType = {request: string, name: string, order: string, maxCount: number}
+export type ModalValuesType = {request: string, name: string, order: string, maxCount: number, id: number}
 
-const addItemToLocalStorage = ({request, name, order, maxCount} : ModalValuesType) => {
-  alert(request + name + order + maxCount)
-}
 
-const ModalForm: FC<{query: string, editMode: boolean, onSubmit: (x: ModalValuesType) => void}> = ({query, editMode, onSubmit}) => {
+const ModalForm: FC<{query: string,
+                    editMode: boolean,
+                    onSubmit: (x: ModalValuesType) => void,
+                    requestToEdit: ModalValuesType}> = ({query, editMode, onSubmit, requestToEdit}) => {
+
   return <Formik
-  initialValues={{ request: query, name: '', order: '', maxCount: 5}}
-  onSubmit={(values, { setSubmitting }) => {
+  enableReinitialize
+  initialValues={{...requestToEdit} || {request: query, order: '', maxCount: 5, name: ''}}
+
+  onSubmit={(values, { setSubmitting, resetForm, setValues}) => {
     setTimeout(() => {
-      values.request = query
-      alert(JSON.stringify(values, null, 2))
-
+      values.maxCount ? setValues({...values, request: query}) : setValues({...values, request: query, maxCount: 5})
       onSubmit({...values})
-
       setSubmitting(false)
-    }, 400);
-  }}>
+      editMode ? setValues({request: "", name: "", maxCount: 5, order: "", id: -1}) 
+                : setValues({request: query, name: "", maxCount: 5, order: "", id: -1}) 
+    }, 300);
+  }}
+  >
 
 
   {({ isSubmitting }) => (
@@ -70,12 +78,14 @@ const ModalForm: FC<{query: string, editMode: boolean, onSubmit: (x: ModalValues
 </Formik>
 }
 
-const Modal: FC<Props> = ({active, setActive, query, editMode, onSubmit}) => {
-
+const Modal: FC<Props> = ({active, setActive, query, editMode, onSubmit, request}) => {
+  
   return <div className={active === true ? styles.modal + " " + styles.active : styles.modal} onClick={() => setActive(false)} >
       <div className={styles.content} onClick={e => e.stopPropagation()}>
         <h3>Сохранение запроса</h3>
-        <ModalForm query={query} editMode={editMode} onSubmit={onSubmit}/>
+        { request 
+        ? <ModalForm query={query} editMode={editMode} onSubmit={onSubmit} requestToEdit={request as ModalValuesType}/>
+        : <ModalForm query={query} editMode={editMode} onSubmit={onSubmit} requestToEdit={{} as ModalValuesType} /> }
       </div>
     </div>
 }

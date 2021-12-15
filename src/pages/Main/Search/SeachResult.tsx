@@ -34,9 +34,9 @@ const getDuration = (duration: Date): string => {
   const newDuration: string = duration.toString()
   let result = ""
   for (let i = 0; i < newDuration.length - 1; i++) {
-    if (newDuration[i] == "0" || newDuration[i] == "1" || newDuration[i] == "2" || newDuration[i] == "3" ||
-    newDuration[i] == "4" || newDuration[i] == "5" || newDuration[i] == "6" || newDuration[i] == "7" ||
-    newDuration[i] == "8" || newDuration[i] == "9") {
+    if (newDuration[i] === "0" || newDuration[i] === "1" || newDuration[i] === "2" || newDuration[i] === "3" ||
+    newDuration[i] === "4" || newDuration[i] === "5" || newDuration[i] === "6" || newDuration[i] === "7" ||
+    newDuration[i] === "8" || newDuration[i] === "9") {
       result += newDuration[i]
     } else if (newDuration[i] !== "P" && newDuration[i] !== "T") {
       result += ":"
@@ -75,7 +75,7 @@ const getDescription = (desc: string): string => {
 
 const getVideoItem = (video: VideoType) => {
   return <div>
-      <a  className="SearchResult__video video" href={"https://www.youtube.com/watch?v="+video.url} target="_blank">
+      <a  className="SearchResult__video video" href={"https://www.youtube.com/watch?v="+video.url} rel="noreferrer" target="_blank">
 
       <div className="video__thumbnail">
           <div className="video__img">

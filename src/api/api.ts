@@ -1,7 +1,5 @@
 import axios from "axios"
 
-{/* https://youtube.googleapis.com/youtube/v3/search?q=${request}&key=${API_KEY} */}
-
 const instance = axios.create({
   baseURL: `https://youtube.googleapis.com/youtube/v3/`,
   params: {

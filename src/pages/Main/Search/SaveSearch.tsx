@@ -9,7 +9,7 @@ const SaveSearch: FC<{queryString: string}> = ({queryString}) => {
 
   return (
     <div className="SaveSearch">
-        <Modal active={modalActive} setActive={setModalActive} query={queryString} editMode={false} onSubmit={saveRequest}/>
+        <Modal active={modalActive} setActive={setModalActive} query={queryString} editMode={false} onSubmit={saveRequest} request={{}}/>
       
         <div className="SaveSearch__button" onClick={() => setModalActive(true)}>
           Сохранить запрос

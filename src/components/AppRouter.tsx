@@ -1,10 +1,9 @@
-import React, { useState, FC} from 'react'
+import React, { FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import SavedRequestsContainer from '../pages/SavedRequests/SavedRequestsContainer'
 import MainContainer from '../pages/Main/MainContainer'
 import Auth from '../pages/Auth/Auth'
-import Modal from './Modal/Modal';
 import { AppStateType } from '../redux/store'
 import { connect } from 'react-redux'
 
