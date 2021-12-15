@@ -5,8 +5,10 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 200000;
+  z-index: 27;
   transform: scale(0);
+  display: flex;
+  flex-direction: column;
 }
 
 .modal.active {
@@ -20,3 +22,4 @@
   margin: 30px auto;
   text-align: left;
 }
+

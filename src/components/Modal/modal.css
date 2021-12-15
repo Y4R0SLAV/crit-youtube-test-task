@@ -1,0 +1,20 @@
+.modal__form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.modal__fieldName, .modal__field {
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.modal__field {
+  padding-left: 10px;
+}
+
+.modal__button {
+  cursor: pointer;
+  padding: 10px;
+  display: block;
+  margin: 30px auto 0 auto;
+}
