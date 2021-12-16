@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import "./main.css"
-import Search from './Search/Search'
-import SearchResult from './Search/SeachResult'
-import SaveSearch from './Search/SaveSearch'
+import Search from './search/Search'
+import SearchResult from './search/SeachResult'
+import SaveSearch from './search/SaveSearch'
 import { VideoType } from '../../redux/mainPageReducer'
 import CheckAuth from '../../components/CheckAuth'
 

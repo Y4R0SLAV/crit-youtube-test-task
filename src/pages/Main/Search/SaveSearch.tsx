@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./search.css"
-import Modal from './../../../components/Modal/Modal'
-import { saveRequest } from './../../../localStorageInteraction';
+import Modal from '../../../components/modal/Modal'
+import { saveRequest } from '../../../localStorageInteraction';
 
 const SaveSearch: FC<{queryString: string}> = ({queryString}) => {
   const [modalActive, setModalActive] = useState(false)

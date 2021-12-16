@@ -24,7 +24,7 @@ const ModalForm: FC<{query: string,
   enableReinitialize
   initialValues={{...requestToEdit} || {request: query, order: '', maxCount: 5, name: ''}}
 
-  onSubmit={(values, { setSubmitting, resetForm, setValues}) => {
+  onSubmit={(values, { setSubmitting, setValues}) => {
     setTimeout(() => {
       values.maxCount ? setValues({...values, request: query}) : setValues({...values, request: query, maxCount: 5})
       onSubmit({...values})

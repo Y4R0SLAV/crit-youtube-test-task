@@ -1,4 +1,4 @@
-import {ModalValuesType} from '../src/components/Modal/Modal'
+import {ModalValuesType} from './components/modal/Modal'
 
 let maxSavedRequestId = 1
 
@@ -24,7 +24,6 @@ export const saveRequest = (values: ModalValuesType) => {
 
   if (allSavedRequests.length > 0) {
     if (currentUserRequests.length > 1) {
-      alert(currentUserToken + JSON.stringify(currentUserRequests))
       allSavedRequests = allSavedRequests.map(({token, requests}: {token: string, requests: Array<ModalValuesType>}) => {
         if (token === currentUserToken) {
           return {token, requests: currentUserRequests}

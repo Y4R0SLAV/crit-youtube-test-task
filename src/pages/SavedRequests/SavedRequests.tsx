@@ -1,12 +1,12 @@
 import React, {  useEffect, useState } from 'react'
 import "./savedRequests.css"
 import "./request.css"
-import Modal, { ModalValuesType } from './../../components/Modal/Modal'
-import { editRequest, getRequests } from './../../localStorageInteraction'
-import CheckAuth from './../../components/CheckAuth'
+import Modal, { ModalValuesType } from '../../components/modal/Modal'
+import { editRequest, getRequests } from '../../localStorageInteraction'
+import CheckAuth from '../../components/CheckAuth'
 import { Link } from 'react-router-dom'
 import { SEARCH_ROUTE } from '../../components/AppRouter'
-import { MAIN_ROUTE } from './../../components/AppRouter'
+import { MAIN_ROUTE } from '../../components/AppRouter'
 
 
 const getOrder = (order: string ) => {

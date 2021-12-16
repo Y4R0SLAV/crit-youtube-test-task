@@ -3,7 +3,7 @@ import "./logout.css"
 import { Link } from 'react-router-dom'
 import { AUTH_ROUTE } from '../AppRouter'
 import { logout } from '../../redux/authReducer'
-import { deleteToken } from './../../localStorageInteraction'
+import { deleteToken } from '../../localStorageInteraction'
 import {useLocation} from "react-router-dom"
 
 
