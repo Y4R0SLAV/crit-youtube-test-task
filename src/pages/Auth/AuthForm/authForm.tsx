@@ -9,7 +9,6 @@ import { SEARCH_ROUTE } from '../../../components/AppRouter'
 
 
 const createToken = (login: string, id: number) => {
-  alert(sha256(login))
   const header = JSON.stringify({ "alg": "HS256", "typ": "JWT"})
   const payload = JSON.stringify({ "login": login, "id": id })
 
@@ -19,18 +18,18 @@ const createToken = (login: string, id: number) => {
   localStorage.setItem('token', JSON.stringify(btoa(header) + '.' + btoa(payload) + '.' + btoa(signature)))
 }
 
-const loginAndCreateToken = () => {
+const loginAndCreateToken = (userLogin: string, userId: number) => {
   login()
-  createToken("hello", 3)
+  createToken(userLogin, userId)
 }
 
 const checkLoginAndPassword = (login: string, password: string) => {
   for (let i = 0; i < users.length; i ++) {
     if (users[i].login === login && users[i].password === password) {
-      return true
+      return users[i].id
     }
   }
-  return false
+  return 0
 }
 
 const AuthForm = () => {
@@ -39,11 +38,9 @@ const AuthForm = () => {
     <Formik
       initialValues={{ login: '', password: '' }}
       onSubmit={(values, { setSubmitting, setValues }) => {
-        if (checkLoginAndPassword(values.login, values.password)) {
-          loginAndCreateToken()
-        } else {
-          setValues({password: "", login: "Неверные данные"})
-        }
+        const userId = checkLoginAndPassword(values.login, values.password)
+        {userId ? loginAndCreateToken(values.login, userId) : setValues({password: "", login: "Неверные данные"})}
+        
         setSubmitting(false)
         navigation(SEARCH_ROUTE, {replace: true})
       }}

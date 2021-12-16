@@ -3,19 +3,39 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 import "./search.css"
 
-type PropsType = {queryString: string, setQueryString: (x: string) => void, getVideosId: (x: string) => void }
+type PropsType = {queryString: string,
+                  setQueryString: (x: string) => void,
+                  getVideosId: (x: string, maxResults?: number, order?: 'date' | 'rating' | 'viewCount' | 'relevance' | 'title') => void,
+                  maxResults?: number,
+                  order?: 'date' | 'rating' | 'viewCount' | 'relevance' | 'title' }
 
 
-const Search: FC<PropsType> = ({queryString, setQueryString, getVideosId}) => {
+const Search: FC<PropsType> = ({queryString, setQueryString, getVideosId, maxResults, order}) => {
   const navigate = useNavigate()
   const location = useLocation()
+
+  if (maxResults || order) {
+    getVideosId(queryString, maxResults, order)
+    navigate(`?search_query=${queryString}&maxResults=${maxResults}&order=${order}`)
+  }
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const query = params.get('search_query')
+    const order = params.get('order')
+    const maxResults = params.get('maxResults')
+
     if (query) {
       setQueryString(query)
-      getVideosId(query)
+      if (order && maxResults ) {
+        getVideosId(query, +maxResults, order as 'date' | 'rating' | 'viewCount' | 'relevance' | 'title')
+      } else if (order) {
+        getVideosId(query, undefined, order as 'date' | 'rating' | 'viewCount' | 'relevance' | 'title')
+      } else if (maxResults){
+        getVideosId(query, +maxResults)
+      } else {
+        getVideosId(query)
+      }
     }
   }, [])
 

@@ -23,3 +23,17 @@
   text-align: left;
 }
 
+
+.deleteButton {
+  cursor: pointer;
+  border: 1px solid black;
+  width: 15%;
+  text-align: center;
+  padding: 5px;
+  border-radius: 2px;
+  background-color: rgb(255, 228, 228);  
+}
+
+.deleteButton:hover {
+  background-color: rgb(255, 193, 193);  
+}

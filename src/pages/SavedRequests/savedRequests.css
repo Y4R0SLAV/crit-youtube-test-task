@@ -7,8 +7,8 @@
 
 .SavedRequests__wrapper {
   margin: 0 auto;
-  border: 2px red solid;
-  padding-top: 100px;
+  border: 1px red dotted;
+  padding-top: 60px;
   max-width: 1140px;
   min-height: 80vh;
   display: flex;
@@ -16,3 +16,6 @@
   justify-content: top;
 }
 
+.SavedRequests__backButton {
+  padding-top: 10px;
+}

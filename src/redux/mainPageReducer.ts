@@ -28,7 +28,7 @@ type InitialStateType = {
 }
 
 const initialState: InitialStateType = {
-  queryString: "azazin",
+  queryString: "",
   videos: []
 } 
 
@@ -99,17 +99,16 @@ const getVideoInfo = (id: string): ThunkType => {
   }
 }
 
-export const getVideosId = (queryString: string): ThunkType => {
+export const getVideosId = (queryString: string, maxResults?: number, order?: 'date' | 'rating' | 'viewCount' | 'relevance' | 'title'): ThunkType => {
   return async (dispatch: any ) => {
     dispatch(deleteVideos())
-    let data = await videoApi.getVideos(queryString).then(data => data.items)
+    let data = await videoApi.getVideos(queryString, maxResults, order).then(data => data.items)
     
-    
-      for (let i = 0; i < data.length; i++) {
-        dispatch(getVideoInfo(data[i].id.videoId))
-      }
-      // по очереди передаются все айди полученные по запросу пользователя
+    // по очереди передаются все айди полученные по запросу пользователя
+    for (let i = 0; i < data.length; i++) {
+      dispatch(getVideoInfo(data[i].id.videoId))
     }
   }
+}
 
 export default mainReducer

@@ -4,6 +4,9 @@ import "./request.css"
 import Modal, { ModalValuesType } from './../../components/Modal/Modal'
 import { editRequest, getRequests } from './../../localStorageInteraction'
 import CheckAuth from './../../components/CheckAuth'
+import { Link } from 'react-router-dom'
+import { SEARCH_ROUTE } from '../../components/AppRouter'
+import { MAIN_ROUTE } from './../../components/AppRouter'
 
 
 const getOrder = (order: string ) => {
@@ -24,16 +27,10 @@ const getOrder = (order: string ) => {
 }
 
 const getRequestBlock = (request: ModalValuesType,
-                        requests: Array<ModalValuesType>,
-                        setRequests: (requests: Array<ModalValuesType>) => void,
                         setModalRequest : (request: ModalValuesType) => void,
                         setModalActive: (x: boolean) => void ) => {
 
-  const deleteRequest = (deletingRequest: ModalValuesType) => {
-    let newRequests = requests.filter((request: ModalValuesType) => (request.name !== deletingRequest.name))
-    localStorage.setItem('requests', JSON.stringify(newRequests))
-    setRequests(newRequests)
-  }
+
 
 
   return (
@@ -56,9 +53,11 @@ const getRequestBlock = (request: ModalValuesType,
     </div>
 
     <div className="content__buttons buttons">
-      <div className="buttons_button buttons_search" onClick={() => {deleteRequest(request)}}>
-        Удалить запрос
-      </div>
+      <Link to={SEARCH_ROUTE + `?search_query=${request.request}&maxResults=${request.maxCount}&order=${request.order}`}>
+        <div className="buttons_button buttons_search" >
+          Выполнить запрос
+        </div>
+      </Link>
       <div className="buttons_button buttons_edit" onClick={() => {setModalRequest(request); setModalActive(true)}} >
         Редактировать запрос
       </div>
@@ -84,7 +83,8 @@ const SavedRequests = () => {
       <Modal active={modalActive} setActive={setModalActive} query="" editMode={true} onSubmit={editRequest} request={modalRequest}/>
       <div className="SavedRequests__wrapper">
         Сохраненные запросы
-        {requests && requests.map(request => getRequestBlock(request, requests, setRequests, setModalRequest, setModalActive))}
+        <Link className="SavedRequests__backButton" to={MAIN_ROUTE} > Вернуться на страницу запроса </Link>
+        {requests && requests.map(request => getRequestBlock(request, setModalRequest, setModalActive))}
       </div>
     </div>
   )

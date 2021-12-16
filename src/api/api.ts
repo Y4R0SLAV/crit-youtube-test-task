@@ -10,7 +10,11 @@ const instance = axios.create({
 // хз работает ли апи ключ в хедере потом проверить и убрать если норм
 
 export const videoApi = {
-  getVideos (queryString: string): Promise<any> {
+  getVideos (queryString: string, maxResults?: number, order?: 'date' | 'rating' | 'viewCount' | 'relevance' | 'title' ): Promise<any> {
+    if (order && maxResults) {
+      return instance.get<any>(`search?type=video&q=${queryString}&chart=mostPopular&maxResults=${maxResults}&order=${order}&key=AIzaSyCexCKgaWB6qmdo06Yq7FAj0PW8UQrcIeo`)
+    .then(response => response.data)
+    }
     return instance.get<any>(`search?type=video&q=${queryString}&chart=mostPopular&key=AIzaSyCexCKgaWB6qmdo06Yq7FAj0PW8UQrcIeo`)
     .then(response => response.data)
   },

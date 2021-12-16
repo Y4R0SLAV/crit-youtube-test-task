@@ -11,7 +11,7 @@ const SaveSearch: FC<{queryString: string}> = ({queryString}) => {
     <div className="SaveSearch">
         <Modal active={modalActive} setActive={setModalActive} query={queryString} editMode={false} onSubmit={saveRequest} request={{}}/>
       
-        <div className="SaveSearch__button" onClick={() => setModalActive(true)}>
+        <div className="SaveSearch__button" onClick={() => {queryString ? setModalActive(true) : alert('Введите запрос, прежде чем сохранять его')}}>
           Сохранить запрос
         </div>
       

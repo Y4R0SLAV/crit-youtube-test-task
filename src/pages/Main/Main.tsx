@@ -5,7 +5,6 @@ import SearchResult from './Search/SeachResult'
 import SaveSearch from './Search/SaveSearch'
 import { VideoType } from '../../redux/mainPageReducer'
 import CheckAuth from '../../components/CheckAuth'
-import Auth from '../Auth/Auth'
 
 
 type PropsType = {queryString: string
@@ -15,8 +14,6 @@ type PropsType = {queryString: string
                 }
 
 const Main: FC<PropsType> = ({queryString, setQueryString, getVideosId, videos}) => {
-
-
 
   return (
     <div className="Main">

@@ -2,6 +2,7 @@ import React, {FC} from 'react'
 import styles from './modal.module.css'
 import "./modal.css"
 import { Formik, Form, Field } from 'formik'
+import { deleteRequest } from "../../localStorageInteraction"
 
 type Props = {active: boolean,
               setActive: (x: boolean) => void,
@@ -16,7 +17,8 @@ export type ModalValuesType = {request: string, name: string, order: string, max
 const ModalForm: FC<{query: string,
                     editMode: boolean,
                     onSubmit: (x: ModalValuesType) => void,
-                    requestToEdit: ModalValuesType}> = ({query, editMode, onSubmit, requestToEdit}) => {
+                    requestToEdit: ModalValuesType,
+                    setActive: (x: boolean) => void}> = ({query, editMode, onSubmit, requestToEdit, setActive}) => {
 
   return <Formik
   enableReinitialize
@@ -27,8 +29,9 @@ const ModalForm: FC<{query: string,
       values.maxCount ? setValues({...values, request: query}) : setValues({...values, request: query, maxCount: 5})
       onSubmit({...values})
       setSubmitting(false)
-      editMode ? setValues({request: "", name: "", maxCount: 5, order: "", id: -1}) 
-                : setValues({request: query, name: "", maxCount: 5, order: "", id: -1}) 
+      {editMode ? setValues({request: "", name: "", maxCount: 5, order: "", id: -1}) 
+                : setValues({request: query, name: "", maxCount: 5, order: "", id: -1}) }
+      setActive(false)
     }, 300);
   }}
   >
@@ -84,8 +87,11 @@ const Modal: FC<Props> = ({active, setActive, query, editMode, onSubmit, request
       <div className={styles.content} onClick={e => e.stopPropagation()}>
         <h3>Сохранение запроса</h3>
         { request 
-        ? <ModalForm query={query} editMode={editMode} onSubmit={onSubmit} requestToEdit={request as ModalValuesType}/>
-        : <ModalForm query={query} editMode={editMode} onSubmit={onSubmit} requestToEdit={{} as ModalValuesType} /> }
+        ? <ModalForm query={query} editMode={editMode} setActive={setActive} onSubmit={onSubmit} requestToEdit={request as ModalValuesType}/>
+        : <ModalForm query={query} editMode={editMode} setActive={setActive} onSubmit={onSubmit} requestToEdit={{} as ModalValuesType} /> }
+        {editMode && <div className={styles.deleteButton} onClick={() => {deleteRequest(request as ModalValuesType); setActive(false)}}>
+          Удалить запрос
+        </div>}
       </div>
     </div>
 }

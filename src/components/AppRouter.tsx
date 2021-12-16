@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import SavedRequestsContainer from '../pages/SavedRequests/SavedRequestsContainer'
@@ -14,7 +14,7 @@ export const SAVED_ROUTE = '/saved'
 export const AUTH_ROUTE = '/auth'
 
 
-const AppRouter: FC<{query: string}> = ({query}) => {  
+const AppRouter = () => {  
   return (
     <div >
       <Routes>
