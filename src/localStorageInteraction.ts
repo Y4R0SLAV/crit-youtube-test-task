@@ -37,3 +37,7 @@ export const getRequests = (): Array<ModalValuesType> => {
   // @ts-ignore
   return JSON.parse(localStorage.getItem('requests'))
 }
+
+export const getToken = (): string | null => {
+  return localStorage.getItem('token')
+}

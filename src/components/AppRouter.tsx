@@ -22,7 +22,7 @@ const AppRouter: FC<{query: string}> = ({query}) => {
         <Route path={AUTH_ROUTE} element={<Auth />} /> 
         <Route path={MAIN_ROUTE} element={<MainContainer />}>
           <Route path={SEARCH_ROUTE} element={<MainContainer />} />
-        </Route>
+        </Route> 
       </Routes>
     </div>
   )

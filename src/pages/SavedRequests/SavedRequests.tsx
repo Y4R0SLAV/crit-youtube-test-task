@@ -3,6 +3,7 @@ import "./savedRequests.css"
 import "./request.css"
 import Modal, { ModalValuesType } from './../../components/Modal/Modal'
 import { editRequest, getRequests } from './../../localStorageInteraction'
+import CheckAuth from './../../components/CheckAuth'
 
 
 const getOrder = (order: string ) => {
@@ -74,11 +75,12 @@ const SavedRequests = () => {
 
   useEffect(() => {
     setRequests(getRequests());
-  }, [modalActive]);
+  }, [modalActive])
 
 
   return (
     <div className="SavedRequests">
+      {CheckAuth()}
       <Modal active={modalActive} setActive={setModalActive} query="" editMode={true} onSubmit={editRequest} request={modalRequest}/>
       <div className="SavedRequests__wrapper">
         Сохраненные запросы
