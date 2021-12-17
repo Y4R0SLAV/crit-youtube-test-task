@@ -55,7 +55,7 @@ export const deleteRequest = (deletingRequest: ModalValuesType) => {
   currentUserRequests = currentUserRequests.filter((request: ModalValuesType) => request.id !== deletingRequest.id )
 
   if (allSavedRequests.length > 0) {
-    if (currentUserRequests.length > 1) {
+    if (currentUserRequests.length > 0) {
       allSavedRequests = allSavedRequests.map(({token, requests}: {token: string, requests: Array<ModalValuesType>}) => {
         if (token === currentUserToken) {
           return {token, requests: currentUserRequests}
