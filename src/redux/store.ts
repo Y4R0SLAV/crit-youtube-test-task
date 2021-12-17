@@ -1,9 +1,11 @@
 import { applyMiddleware, combineReducers, createStore, compose } from "redux"
 import thunkMiddleware from 'redux-thunk'
 import mainReducer from './mainPageReducer';
+import authReducer from './authReducer';
 
 let rootReducer = combineReducers({
-  main: mainReducer
+  main: mainReducer,
+  auth: authReducer
 })
 
 type RootReducerType = typeof rootReducer  // (globalState: GLOBALSTATE) => GLOBALSTATE

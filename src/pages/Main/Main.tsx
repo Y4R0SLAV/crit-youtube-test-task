@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import "./main.css"
-import Search from './search/Search'
-import SearchResult from './search/SeachResult'
-import SaveSearch from './search/SaveSearch'
+import Search from './Search/Search'
+import SearchResult from './Search/SeachResult'
+import SaveSearch from './Search/SaveSearch'
 import { VideoType } from '../../redux/mainPageReducer'
 import CheckAuth from '../../components/CheckAuth'
 
@@ -17,7 +17,7 @@ const Main: FC<PropsType> = ({queryString, setQueryString, getVideosId, videos})
 
   return (
     <div className="Main">
-      {CheckAuth()}
+      <CheckAuth />
       <div className="Main__wrapper">
         <Search queryString={queryString} setQueryString={setQueryString} getVideosId={getVideosId}/>
         <SaveSearch queryString={queryString}/>

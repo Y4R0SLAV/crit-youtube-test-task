@@ -1,12 +1,12 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./savedRequests.css"
 import "./request.css"
-import Modal, { ModalValuesType } from '../../components/modal/Modal'
+import Modal, { ModalValuesType } from '../../components/Modal/Modal'
 import { editRequest, getRequests } from '../../localStorageInteraction'
-import CheckAuth from '../../components/CheckAuth'
 import { Link } from 'react-router-dom'
 import { SEARCH_ROUTE } from '../../components/AppRouter'
 import { MAIN_ROUTE } from '../../components/AppRouter'
+import CheckAuth from '../../components/CheckAuth'
 
 
 const getOrder = (order: string ) => {
@@ -79,7 +79,7 @@ const SavedRequests = () => {
 
   return (
     <div className="SavedRequests">
-      {CheckAuth()}
+      {<CheckAuth />}
       <Modal active={modalActive} setActive={setModalActive} query="" editMode={true} onSubmit={editRequest} request={modalRequest}/>
       <div className="SavedRequests__wrapper">
         Сохраненные запросы
@@ -90,4 +90,4 @@ const SavedRequests = () => {
   )
 }
 
-export default SavedRequests;
+export default SavedRequests

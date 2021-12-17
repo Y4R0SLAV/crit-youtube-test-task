@@ -22,17 +22,18 @@ const ModalForm: FC<{query: string,
 
   return <Formik
   enableReinitialize
-  initialValues={{...requestToEdit} || {request: query, order: '', maxCount: 5, name: ''}}
+  initialValues={{...requestToEdit } || {request: query, order: '', maxCount: 5, name: ''}}
 
   onSubmit={(values, { setSubmitting, setValues}) => {
     setTimeout(() => {
-      values.maxCount ? setValues({...values, request: query}) : setValues({...values, request: query, maxCount: 5})
-      onSubmit({...values})
-      setSubmitting(false)
+      values.maxCount ? onSubmit({...values, request: query}) : onSubmit({...values, maxCount: 5})
+
       {editMode ? setValues({request: "", name: "", maxCount: 5, order: "", id: -1}) 
-                : setValues({request: query, name: "", maxCount: 5, order: "", id: -1}) }
+                : setValues({request: values.request, name: "", maxCount: 5, order: "", id: -1}) }
+
+      setSubmitting(false)
       setActive(false)
-    }, 300);
+    }, 200);
   }}
   >
 

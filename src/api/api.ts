@@ -11,7 +11,7 @@ const instance = axios.create({
 
 export const videoApi = {
   getVideos (queryString: string, maxResults?: number, order?: 'date' | 'rating' | 'viewCount' | 'relevance' | 'title' ): Promise<any> {
-    if (order && maxResults) {
+    if (order === 'date' || order ===  'rating' || order === 'viewCount' || order === 'relevance' || order ===  'title' && maxResults) {
       return instance.get<any>(`search?type=video&q=${queryString}&chart=mostPopular&maxResults=${maxResults}&order=${order}&key=AIzaSyCexCKgaWB6qmdo06Yq7FAj0PW8UQrcIeo`)
     .then(response => response.data)
     }

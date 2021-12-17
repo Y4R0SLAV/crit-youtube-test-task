@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import SavedRequestsContainer from '../pages/savedRequests/SavedRequestsContainer'
-import MainContainer from '../pages/main/MainContainer'
+import SavedRequestsContainer from '../pages/SavedRequests/SavedRequestsContainer'
+import MainContainer from '../pages/Main/MainContainer'
 import { AppStateType } from '../redux/store'
 import { connect } from 'react-redux'
-import Auth from '../pages/auth/Auth'
+import Auth from '../pages/Auth/Auth'
 
 
 export const MAIN_ROUTE = '/'
