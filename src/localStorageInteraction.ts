@@ -1,3 +1,4 @@
+import { stringify } from 'querystring'
 import {ModalValuesType} from './components/Modal/Modal'
 
 
@@ -62,7 +63,8 @@ export const deleteRequest = (deletingRequest: ModalValuesType) => {
       })
     } else {
       // с текущим токеном нет ещё ни одного сохраненного запроса
-      allSavedRequests.push({token: currentUserToken, requests: currentUserRequests})
+      // @ts-ignore
+      allSavedRequests = allSavedRequests.filter(({token, request}) => (token !== currentUserToken))
     }
   } else {
       allSavedRequests = [{token: currentUserToken, requests: currentUserRequests}]
