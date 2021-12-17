@@ -1,6 +1,6 @@
 import React from 'react'
 import "./auth.css"
-import AuthForm from './AuthForm/AuthForm'
+import AuthForm from './AuthForm/authForm'
 
 import data from '../../auth.json'
 import { getToken } from '../../localStorageInteraction'
