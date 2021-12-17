@@ -26,7 +26,8 @@ const ModalForm: FC<{query: string,
 
   onSubmit={(values, { setSubmitting, setValues}) => {
     setTimeout(() => {
-      values.maxCount ? onSubmit({...values, request: query}) : onSubmit({...values, maxCount: 5})
+      // @ts-ignore
+      values.maxCount ? onSubmit({...values, request: query}) : onSubmit({request: query, ...values, maxCount: 5})
 
       {editMode ? setValues({request: "", name: "", maxCount: 5, order: "", id: -1}) 
                 : setValues({request: values.request, name: "", maxCount: 5, order: "", id: -1}) }

@@ -2,7 +2,7 @@ import React from 'react'
 import "./authForm.css"
 import { Formik, Form, Field } from 'formik'
 import { login } from '../../../redux/authReducer'
-import { users } from '../auth'
+import { users } from '../Auth'
 import { useNavigate } from 'react-router-dom';
 import { SEARCH_ROUTE } from '../../../components/AppRouter'
 import { sha256 } from './token-generation'

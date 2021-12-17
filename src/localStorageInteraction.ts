@@ -23,13 +23,13 @@ const getUserData = () => {
 
 export const saveRequest = (values: ModalValuesType) => {
   let {currentUserToken, allSavedRequests, currentUserRequests, maxSavedRequestId } = getUserData()
-
   maxSavedRequestId += 1
   currentUserRequests.push({...values, id: maxSavedRequestId})
 
 
   if (allSavedRequests.length > 0) {
     if (currentUserRequests.length > 1) {
+        
       allSavedRequests = allSavedRequests.map(({token, requests}: {token: string, requests: Array<ModalValuesType>}) => {
         if (token === currentUserToken) {
           return {token, requests: currentUserRequests}

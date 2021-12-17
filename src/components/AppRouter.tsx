@@ -5,7 +5,7 @@ import SavedRequestsContainer from '../pages/SavedRequests/SavedRequestsContaine
 import MainContainer from '../pages/Main/MainContainer'
 import { AppStateType } from '../redux/store'
 import { connect } from 'react-redux'
-import Auth from '../pages/Auth/auth'
+import Auth from '../pages/Auth/Auth'
 
 
 export const MAIN_ROUTE = '/'
