@@ -11,7 +11,7 @@ import { MAIN_ROUTE } from '../../components/AppRouter'
 
 const getOrder = (order: string ) => {
   switch (order) {
-    case "rating": 
+    case "rating":
       return "Упорядочено по рейтингу"
     case "date":
       return "Упорядочено по дате загрузки"
@@ -25,6 +25,7 @@ const getOrder = (order: string ) => {
       return ""
   }
 }
+
 
 const getRequestBlock = (request: ModalValuesType,
                         setModalRequest : (request: ModalValuesType) => void,
@@ -63,14 +64,14 @@ const getRequestBlock = (request: ModalValuesType,
       </div>
     </div>
   </div>
-  
+
   )
 }
 
 const SavedRequests = () => {
   const [modalActive, setModalActive] = useState(false)
   const [requests, setRequests] = useState([] as Array<ModalValuesType>)
-  const [modalRequest, setModalRequest] = useState({} as ModalValuesType) 
+  const [modalRequest, setModalRequest] = useState({} as ModalValuesType)
 
   useEffect(() => {
     setRequests(getRequests());
