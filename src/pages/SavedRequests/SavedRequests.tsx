@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./savedRequests.css"
 import "./request.css"
-import Modal, { ModalValuesType } from '../../components/modal/Modal'
+import Modal, { ModalValuesType } from '../../components/Modal/Modal'
 import { editRequest, getRequests } from '../../localStorageInteraction'
 import { Link } from 'react-router-dom'
 import { SEARCH_ROUTE } from '../../components/AppRouter'
