@@ -4,7 +4,7 @@ import './App.css'
 import store from "./redux/store"
 import AppRouter from './components/AppRouter'
 import { BrowserRouter } from 'react-router-dom'
-import Logout from './components/Logout/Logout'
+import Logout from './components/logout/Logout'
 
 function App() {
   return (

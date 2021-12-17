@@ -2,10 +2,11 @@ import React from 'react'
 import "./authForm.css"
 import { Formik, Form, Field } from 'formik'
 import { login } from '../../../redux/authReducer'
-import { sha256 } from './token-generation'
-import { users } from '../Auth'
+import { users } from '../auth'
 import { useNavigate } from 'react-router-dom';
 import { SEARCH_ROUTE } from '../../../components/AppRouter'
+// @ts-ignore
+import { sha256 } from './token-generation'
 
 
 const createToken = (login: string, id: number) => {

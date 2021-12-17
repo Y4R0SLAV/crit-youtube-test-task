@@ -1,4 +1,4 @@
-import {ModalValuesType} from './components/Modal/Modal'
+import {ModalValuesType} from './components/modal/Modal'
 
 
 const getUserData = () => {

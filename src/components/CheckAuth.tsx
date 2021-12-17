@@ -9,7 +9,6 @@ import { login } from './../redux/authReducer'
 const CheckAuth: FC<{login: () => void}> = ({login}) => {  
   const token = getToken()
 
-  alert(token)
   if (!token) {
     return <Navigate to={AUTH_ROUTE} replace={true} />
   }

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { AppStateType } from '../../redux/store'
+// @ts-ignore
 import Main from './Main'
 import { setQueryString, getVideosId, VideoType } from '../../redux/mainPageReducer'
 
